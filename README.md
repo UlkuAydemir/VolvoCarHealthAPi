@@ -49,26 +49,26 @@ A RESTful API for managing vehicle health status, including battery, oil, and en
 
 ## Future Improvements
 
-Add Service Layer
-Introduce a service layer to encapsulate business logic, improving separation of concerns.
+- Add Service Layer
+- Introduce a service layer to encapsulate business logic, improving separation of concerns.
 
-Implement Authentication & Authorization
-Secure the API using JWT or OAuth to control access.
+- Implement Authentication & Authorization
+- Secure the API using JWT or OAuth to control access.
 
-Add Logging and Monitoring
-Integrate logging frameworks (e.g., Serilog) and monitoring tools for better diagnostics.
+- Add Logging and Monitoring
+- Integrate logging frameworks (e.g., Serilog) and monitoring tools for better diagnostics.
 
-Support for Pagination and Filtering
-Add pagination, filtering, and sorting to list endpoints.
+- Support for Pagination and Filtering
+- Add pagination, filtering, and sorting to list endpoints.
 
-Error Handling Middleware
-Improve global error handling for consistent API responses.
+- Error Handling Middleware
+- Improve global error handling for consistent API responses.
 
-Background Jobs for Maintenance Alerts
-Add scheduled jobs to notify users when maintenance is due.
+- Background Jobs for Maintenance Alerts
+- Add scheduled jobs to notify users when maintenance is due.
 
-Extend Domain Model
-Include more vehicle parameters or history tracking.
+- Extend Domain Model
+- Include more vehicle parameters or history tracking.
 
-Containerization and CI/CD Pipeline
-Improve deployment automation and container orchestration.
+- Containerization and CI/CD Pipeline
+- Improve deployment automation and container orchestration.
