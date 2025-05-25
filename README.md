@@ -20,7 +20,7 @@ A RESTful API for managing vehicle health status, including battery, oil, and en
   Contains domain entities and interfaces.
 
 - **VolvoCarHealth.Infrastructure**  
-  Data access layer, EF Core DbContext, repositories, and migrations.
+  Data access layer, EF Core DbContext, repositories, helper methods and migrations.
 
 - **VolvoCarHealth.Api**  
   ASP.NET Core Web API project, controllers, dependency injection, and startup configuration.
