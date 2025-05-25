@@ -1,9 +1,7 @@
-﻿using Xunit;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using VolvoCarHealth.Domain.Entities;
 using VolvoCarHealth.Infrastructure.Data;
 using VolvoCarHealth.Infrastructure.Repositories;
-using System.Linq;
 
 public class VehicleStatusRepositoryTests
 {
@@ -17,7 +15,7 @@ public class VehicleStatusRepositoryTests
     }
 
     [Fact]
-    public void GetAll_ReturnsAllVehicleStatuses()
+    public async Task GetAllAsync_ReturnsAllVehicleStatuses()
     {
         // Arrange
         var context = GetInMemoryDbContext();
@@ -26,15 +24,16 @@ public class VehicleStatusRepositoryTests
         var newStatus = new VehicleStatus { BatteryLevel = 80, OilLevel = 70, EngineTemperature = 90, LastUpdated = DateTime.UtcNow };
 
         context.VehicleStatuses.Add(newStatus);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         // Act
-        var result = repo.GetAll();
+        var result = await repo.GetAllAsync();
 
         // Assert
         Assert.Single(result);
         Assert.Equal(80, result.First().BatteryLevel);
     }
+
 
     [Fact]
     public async Task AddAsync_AddsNewVehicleStatus()

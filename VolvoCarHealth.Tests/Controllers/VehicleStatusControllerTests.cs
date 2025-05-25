@@ -1,12 +1,8 @@
-﻿using Xunit;
-using Moq;
+﻿using Moq;
 using Microsoft.AspNetCore.Mvc;
 using VolvoCarHealth.Api.Controllers;
 using VolvoCarHealth.Infrastructure.Repositories;
 using VolvoCarHealth.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class VehicleStatusControllerTests
 {
@@ -133,4 +129,56 @@ public class VehicleStatusControllerTests
 
         Assert.IsType<NotFoundResult>(result);
     }
+
+    [Fact]
+    public async Task GetDaysUntilMaintenance_ReturnsOk_WithDaysLeft()
+    {
+        // Arrange
+        var mockRepo = new Mock<IVehicleStatusRepository>();
+        var vehicleStatus = new VehicleStatus
+        {
+            Id = 1,
+            LastMaintenanceDate = DateTime.UtcNow.AddDays(-10),
+            MaintenanceIntervalDays = 30
+        };
+
+        mockRepo.Setup(r => r.GetByIdAsync(vehicleStatus.Id)).ReturnsAsync(vehicleStatus);
+
+        var controller = new VehicleStatusController(mockRepo.Object);
+
+        // Act
+        var result = await controller.GetDaysUntilMaintenance(vehicleStatus.Id);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var data = okResult.Value;
+
+        var vehicleStatusIdProp = data.GetType().GetProperty("VehicleStatusId");
+        var daysUntilNextMaintenanceProp = data.GetType().GetProperty("DaysUntilNextMaintenance");
+
+        Assert.NotNull(vehicleStatusIdProp);
+        Assert.NotNull(daysUntilNextMaintenanceProp);
+
+        Assert.Equal(vehicleStatus.Id, (int)vehicleStatusIdProp.GetValue(data));
+
+        int daysLeftValue = (int)daysUntilNextMaintenanceProp.GetValue(data);
+        Assert.True(daysLeftValue == 20 || daysLeftValue == 19, $"Expected 19 or 20 but got {daysLeftValue}");
+    }
+
+    [Fact]
+    public async Task GetDaysUntilMaintenance_ReturnsNotFound_WhenStatusDoesNotExist()
+    {
+        // Arrange
+        var mockRepo = new Mock<IVehicleStatusRepository>();
+        mockRepo.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((VehicleStatus)null);
+
+        var controller = new VehicleStatusController(mockRepo.Object);
+
+        // Act
+        var result = await controller.GetDaysUntilMaintenance(1);
+
+        // Assert
+        Assert.IsType<NotFoundResult>(result);
+    }
+
 }

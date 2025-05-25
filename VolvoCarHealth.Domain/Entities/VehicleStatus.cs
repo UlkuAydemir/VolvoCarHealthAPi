@@ -7,4 +7,6 @@ public class VehicleStatus
     public int OilLevel { get; set; }
     public float EngineTemperature { get; set; }
     public DateTime LastUpdated { get; set; }
+    public DateTime LastMaintenanceDate { get; set; }
+    public int MaintenanceIntervalDays { get; set; }
 }

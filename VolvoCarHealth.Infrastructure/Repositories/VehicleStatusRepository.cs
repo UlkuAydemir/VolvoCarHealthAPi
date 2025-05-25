@@ -1,20 +1,18 @@
-﻿using VolvoCarHealth.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using VolvoCarHealth.Domain.Entities;
 using VolvoCarHealth.Infrastructure.Data;
 
 namespace VolvoCarHealth.Infrastructure.Repositories;
 
-public class VehicleStatusRepository : IVehicleStatusRepository
+public class VehicleStatusRepository : BaseRepository<VehicleStatus, VehicleContext>, IVehicleStatusRepository
 {
-    private readonly VehicleContext _context;
-
-    public VehicleStatusRepository(VehicleContext context)
+    public VehicleStatusRepository(VehicleContext context) : base(context)
     {
-        _context = context;
     }
 
-    public IEnumerable<VehicleStatus> GetAll()
+    public async Task<IEnumerable<VehicleStatus>> GetAllAsync()
     {
-        return _context.VehicleStatuses.ToList();
+        return await _context.VehicleStatuses.ToListAsync();
     }
 
     public async Task<VehicleStatus> AddAsync(VehicleStatus entity)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VolvoCarHealth.Domain.Entities;
+using VolvoCarHealth.Infrastructure.Helpers;
 using VolvoCarHealth.Infrastructure.Repositories;
 
 namespace VolvoCarHealth.Api.Controllers;
@@ -16,16 +17,15 @@ public class VehicleStatusController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get()
+    public async Task<IActionResult> Get()
     {
         try
         {
-            var statuses = _repository.GetAll();
+            var statuses = await _repository.GetAllAsync();
             return Ok(statuses);
         }
         catch (Exception ex)
         {
-            // Handle unexpected errors
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
@@ -104,5 +104,30 @@ public class VehicleStatusController : ControllerBase
         {
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
+    }
+
+    [HttpGet("{id}/Summary")]
+    public async Task<IActionResult> GetSummary(int id)
+    {
+        var status = await _repository.GetByIdAsync(id);
+        if (status == null)
+            return NotFound();
+
+        // Extension method 
+        var isCritical = status.IsCritical();
+        var summary = status.HealthSummary();
+
+        return Ok(new { isCritical, summary });
+    }
+
+    [HttpGet("{id}/DaysUntilMaintenance")]
+    public async Task<IActionResult> GetDaysUntilMaintenance(int id)
+    {
+        var status = await _repository.GetByIdAsync(id);
+        if (status == null)
+            return NotFound();
+
+        int daysLeft = DateTimeHelper.GetDaysUntilNextMaintenance(status.LastMaintenanceDate, status.MaintenanceIntervalDays, DateTime.UtcNow);
+        return Ok(new { VehicleStatusId = id, DaysUntilNextMaintenance = daysLeft });
     }
 }

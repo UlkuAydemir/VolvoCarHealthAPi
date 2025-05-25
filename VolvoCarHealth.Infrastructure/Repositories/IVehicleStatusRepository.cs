@@ -4,8 +4,7 @@ namespace VolvoCarHealth.Infrastructure.Repositories;
 
 public interface IVehicleStatusRepository
 {
-    IEnumerable<VehicleStatus> GetAll();
-
+    Task<IEnumerable<VehicleStatus>> GetAllAsync();
     Task<VehicleStatus> AddAsync(VehicleStatus entity);
     Task<VehicleStatus?> GetByIdAsync(int id);
     Task<VehicleStatus> UpdateAsync(VehicleStatus entity);
