@@ -33,8 +33,8 @@ A RESTful API for managing vehicle health status, including battery, oil, and en
 ## Prerequisites
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-- IDE like Visual Studio 2022 or Visual Studio Code
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- IDE like Visual Studio 2022 or Visual Studio Code
 - SQL Server running in Docker (configured via `docker-compose.yml`)
 
 ---
