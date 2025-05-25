@@ -2,7 +2,7 @@
 
 namespace VolvoCarHealth.Tests.Helpers
 {
-    public class VehicleStatusHelper
+    public class VehicleStatusHelperTests
     {
         [Theory]
         [InlineData(10, 30, 100, true)]  // Battery below 20% -> critical
