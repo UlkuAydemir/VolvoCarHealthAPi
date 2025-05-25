@@ -2,7 +2,6 @@
 using VolvoCarHealth.Domain.Entities;
 using VolvoCarHealth.Infrastructure.Repositories;
 
-
 namespace VolvoCarHealth.Api.Controllers;
 
 [ApiController]
@@ -19,32 +18,60 @@ public class VehicleStatusController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        var statuses = _repository.GetAll();
-        return Ok(statuses);
+        try
+        {
+            var statuses = _repository.GetAll();
+            return Ok(statuses);
+        }
+        catch (Exception ex)
+        {
+            // Handle unexpected errors
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
 
-    // Create
     [HttpPost]
-    public async Task<IActionResult> Create(VehicleStatus newStatus)
-    {
-        var createdStatus = await _repository.AddAsync(newStatus);
-        return CreatedAtAction(nameof(GetById), new { id = createdStatus.Id }, createdStatus);
-    }
-
-    // Read (Get by Id)
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
-    {
-        var status = await _repository.GetByIdAsync(id);
-        if (status == null) return NotFound();
-        return Ok(status);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, VehicleStatus updatedStatus)
+    public async Task<IActionResult> Create([FromBody] VehicleStatus newStatus)
     {
         try
         {
+            if (newStatus == null)
+                return BadRequest("Request body is null");
+
+            var createdStatus = await _repository.AddAsync(newStatus);
+            return CreatedAtAction(nameof(GetById), new { id = createdStatus.Id }, createdStatus);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        try
+        {
+            var status = await _repository.GetByIdAsync(id);
+            if (status == null)
+                return NotFound();
+
+            return Ok(status);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, [FromBody] VehicleStatus updatedStatus)
+    {
+        try
+        {
+            if (updatedStatus == null)
+                return BadRequest("Request body is null");
+
             if (id != updatedStatus.Id)
                 return BadRequest("Id mismatch");
 
@@ -53,7 +80,7 @@ public class VehicleStatusController : ControllerBase
                 return NotFound();
 
             var updated = await _repository.UpdateAsync(updatedStatus);
-            return Ok(updated); // Güncellenmiş veri geri döndürülüyor
+            return Ok(updated);
         }
         catch (Exception ex)
         {
@@ -61,15 +88,21 @@ public class VehicleStatusController : ControllerBase
         }
     }
 
-    // Delete
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var existing = await _repository.GetByIdAsync(id);
-        if (existing == null)
-            return NotFound();
+        try
+        {
+            var existing = await _repository.GetByIdAsync(id);
+            if (existing == null)
+                return NotFound();
 
-        await _repository.DeleteAsync(existing);
-        return NoContent();
+            await _repository.DeleteAsync(existing);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
 }
