@@ -46,7 +46,8 @@ A RESTful API for managing vehicle health status, including battery, oil, and en
    ```bash
    docker-compose up -d
 
-   Future Improvements
+   **Future Improvements**
+
 Add Service Layer
 Introduce a service layer to encapsulate business logic, improving separation of concerns.
 
