@@ -1,7 +1,29 @@
+# Build output
 bin/
 obj/
-*.db
-.env
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio folder
+.vs/
+
+# Visual Studio Code folder
 .vscode/
+
+# Database files (örneğin SQLite gibi)
+*.db
+
+# Environment variable files
+.env
+
+# Docker related files
 Dockerfile.*
 docker-compose.override.yml
+
+# Logs and temporary files
+*.log
+*.tmp
