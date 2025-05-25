@@ -59,7 +59,7 @@ public class VehicleStatusControllerTests
     }
 
     [Fact]
-    public async Task Update_ReturnsNoContent_WhenUpdateSuccessful()
+    public async Task Update_ReturnsOkObjectResult_WhenUpdateSuccessful()
     {
         var mockRepo = new Mock<IVehicleStatusRepository>();
         var existingStatus = new VehicleStatus { Id = 1, BatteryLevel = 70, OilLevel = 60, EngineTemperature = 85, LastUpdated = DateTime.UtcNow };
@@ -71,8 +71,11 @@ public class VehicleStatusControllerTests
 
         var result = await controller.Update(existingStatus.Id, existingStatus);
 
-        Assert.IsType<NoContentResult>(result);
+        var okResult = Assert.IsType<OkObjectResult>(result);  
+        var returnedStatus = Assert.IsType<VehicleStatus>(okResult.Value); 
+        Assert.Equal(existingStatus.Id, returnedStatus.Id); 
     }
+
 
     [Fact]
     public async Task Update_ReturnsBadRequest_WhenIdMismatch()
