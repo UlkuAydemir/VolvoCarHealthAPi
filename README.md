@@ -49,26 +49,31 @@ A RESTful API for managing vehicle health status, including battery, oil, and en
 
 ## Future Improvements
 
-- Add Service Layer
-- Introduce a service layer to encapsulate business logic, improving separation of concerns.
+- Architecture & Code Quality
+Add Service Layer
+Introduce a service layer between controllers and repositories to encapsulate business logic and improve maintainability.
 
-- Implement Authentication & Authorization
-- Secure the API using JWT or OAuth to control access.
+Implement Global Error Handling Middleware
+Centralize exception handling to produce consistent and structured error responses across the API.
 
-- Add Logging and Monitoring
-- Integrate logging frameworks (e.g., Serilog) and monitoring tools for better diagnostics.
+Extend Domain Model
+Add more vehicle-related data such as tire pressure, fuel levels, or historical logs for better diagnostics and tracking.
 
-- Support for Pagination and Filtering
-- Add pagination, filtering, and sorting to list endpoints.
+- Security
+Implement Authentication & Authorization
+Secure API endpoints using JWT or OAuth to manage user roles and protect sensitive operations.
 
-- Error Handling Middleware
-- Improve global error handling for consistent API responses.
+📈 Monitoring & Diagnostics
+Add Logging and Monitoring
+Use logging frameworks like Serilog, and integrate with monitoring platforms (e.g., Application Insights, ELK stack) to track application health and usage.
 
-- Background Jobs for Maintenance Alerts
-- Add scheduled jobs to notify users when maintenance is due.
+- Usability
+Support for Pagination and Filtering
+Enhance API endpoints that return collections by adding pagination, filtering, and sorting options.
 
-- Extend Domain Model
-- Include more vehicle parameters or history tracking.
+Background Jobs for Maintenance Alerts
+Schedule periodic jobs (using Hangfire, Quartz.NET, etc.) to notify users when vehicle maintenance is due.
 
-- Containerization and CI/CD Pipeline
-- Improve deployment automation and container orchestration.
+- DevOps
+Containerization and CI/CD Pipeline
+Improve deployment automation using Docker (already in place) and set up CI/CD pipelines (e.g., GitHub Actions, Azure DevOps) for streamlined delivery.
