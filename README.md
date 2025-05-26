@@ -47,9 +47,9 @@ A RESTful API for controlling the temperature of the engine, battery, and lubric
    docker-compose up -d
 
 
-## Future Improvements
+## 🚀 Future Improvements
 
-- Architecture & Code Quality
+🔧 Architecture & Code Quality
 
 Add Service Layer
 To increase maintainability and encapsulate business logic, add a service layer between controllers and repositories.
@@ -60,17 +60,17 @@ To generate standardized and organized error answers throughout the API, central
 Extend Domain Model
 For improved monitoring and diagnostics, include more vehicle-related information like tire pressure, fuel levels, or previous logs.
 
-- Security
+🔐  Security
 
 Implement Authentication & Authorization
 Manage user roles and safeguard important processes using secure API endpoints that employ OAuth or JWT.
 
-- Monitoring & Diagnostics
+📈 Monitoring & Diagnostics
 
 Add Logging and Monitoring
 To monitor the health and usage of your applications, use logging frameworks like Serilog and combine them with monitoring systems like Application Insights and ELK stack.
 
-- Usability
+📊 Usability
 
 Support for Pagination and Filtering
 Add pagination, filtering, and sorting options to API calls that return collections to improve them.
@@ -78,7 +78,7 @@ Add pagination, filtering, and sorting options to API calls that return collecti
 Background Jobs for Maintenance Alerts
 Set up recurring jobs to alert users when auto maintenance is necessary (using Hangfire, Quartz.NET, etc.).
 
-- DevOps
+☁️ DevOps
   
 Containerization and CI/CD Pipeline
 For faster delivery, set up CI/CD pipelines (such as GitHub Actions and Azure DevOps) and enhance deployment automation with Docker (which is already in place).
