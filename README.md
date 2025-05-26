@@ -10,7 +10,7 @@ A RESTful API for controlling the temperature of the engine, battery, and lubric
 - Monitoring the maintenance schedule and calculating the number of days before the next repair
 - Domain, infrastructure, and API layers make up a clean architecture.
 - Unit testing using Moq and xUnit
-- Support for SQL Server databases with Docker Compose
+- Dockerized setup: API and SQL Server run in separate containers via Docker Compose
 
 ---
 
