@@ -1,16 +1,16 @@
 # VolvoCarHealth API
 
-A RESTful API for managing vehicle health status, including battery, oil, and engine temperature levels. Built with ASP.NET Core, Entity Framework Core, and SQL Server.
+A RESTful API for controlling the temperature of the engine, battery, and lubricant in a car. constructed using SQL Server, Entity Framework Core, and ASP.NET Core.
 ---
 
 ## Features
 
-- CRUD operations for vehicle status
-- Health summary and critical status helper methods
-- Maintenance schedule tracking with days until next maintenance calculation
-- Clean architecture with Domain, Infrastructure, and API layers
-- Unit tests with xUnit and Moq
-- Docker Compose support for SQL Server database
+- Vehicle status CRUD operations
+- Methods for critical status and health summary assistance
+- Monitoring the maintenance schedule and calculating the number of days before the next repair
+- Domain, infrastructure, and API layers make up a clean architecture.
+- Unit testing using Moq and xUnit
+- Support for SQL Server databases with Docker Compose
 
 ---
 
@@ -52,32 +52,33 @@ A RESTful API for managing vehicle health status, including battery, oil, and en
 - Architecture & Code Quality
 
 Add Service Layer
-Introduce a service layer between controllers and repositories to encapsulate business logic and improve maintainability.
+To increase maintainability and encapsulate business logic, add a service layer between controllers and repositories.
 
 Implement Global Error Handling Middleware
-Centralize exception handling to produce consistent and structured error responses across the API.
+To generate standardized and organized error answers throughout the API, centralize exception handling.
 
 Extend Domain Model
-Add more vehicle-related data such as tire pressure, fuel levels, or historical logs for better diagnostics and tracking.
+For improved monitoring and diagnostics, include more vehicle-related information like tire pressure, fuel levels, or previous logs.
 
 - Security
 
 Implement Authentication & Authorization
-Secure API endpoints using JWT or OAuth to manage user roles and protect sensitive operations.
+Manage user roles and safeguard important processes using secure API endpoints that employ OAuth or JWT.
 
 - Monitoring & Diagnostics
 
 Add Logging and Monitoring
-Use logging frameworks like Serilog, and integrate with monitoring platforms (e.g., Application Insights, ELK stack) to track application health and usage.
+To monitor the health and usage of your applications, use logging frameworks like Serilog and combine them with monitoring systems like Application Insights and ELK stack.
 
 - Usability
 
 Support for Pagination and Filtering
-Enhance API endpoints that return collections by adding pagination, filtering, and sorting options.
+Add pagination, filtering, and sorting options to API calls that return collections to improve them.
 
 Background Jobs for Maintenance Alerts
-Schedule periodic jobs (using Hangfire, Quartz.NET, etc.) to notify users when vehicle maintenance is due.
+Set up recurring jobs to alert users when auto maintenance is necessary (using Hangfire, Quartz.NET, etc.).
 
 - DevOps
+  
 Containerization and CI/CD Pipeline
-Improve deployment automation using Docker (already in place) and set up CI/CD pipelines (e.g., GitHub Actions, Azure DevOps) for streamlined delivery.
+For faster delivery, set up CI/CD pipelines (such as GitHub Actions and Azure DevOps) and enhance deployment automation with Docker (which is already in place).
