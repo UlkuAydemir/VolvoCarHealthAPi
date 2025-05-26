@@ -35,7 +35,7 @@ A RESTful API for controlling the temperature of the engine, battery, and lubric
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - IDE like Visual Studio 2022 or Visual Studio Code
-- SQL Server running in Docker (configured via `docker-compose.yml`)
+- Docker Compose (comes with Docker Desktop) - used to SQL Server and the API in separate containers
 
 ---
 
