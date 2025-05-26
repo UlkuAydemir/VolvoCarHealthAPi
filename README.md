@@ -50,6 +50,7 @@ A RESTful API for managing vehicle health status, including battery, oil, and en
 ## Future Improvements
 
 - Architecture & Code Quality
+
 Add Service Layer
 Introduce a service layer between controllers and repositories to encapsulate business logic and improve maintainability.
 
@@ -60,14 +61,17 @@ Extend Domain Model
 Add more vehicle-related data such as tire pressure, fuel levels, or historical logs for better diagnostics and tracking.
 
 - Security
+
 Implement Authentication & Authorization
 Secure API endpoints using JWT or OAuth to manage user roles and protect sensitive operations.
 
-📈 Monitoring & Diagnostics
+- Monitoring & Diagnostics
+
 Add Logging and Monitoring
 Use logging frameworks like Serilog, and integrate with monitoring platforms (e.g., Application Insights, ELK stack) to track application health and usage.
 
 - Usability
+
 Support for Pagination and Filtering
 Enhance API endpoints that return collections by adding pagination, filtering, and sorting options.
 
